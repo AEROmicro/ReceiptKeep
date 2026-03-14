@@ -1,14 +1,17 @@
 :root {
     --primary: #2563eb;
-    --danger: #dc2626;
+    --success: #10b981;
+    --danger: #ef4444;
     --bg: #f8fafc;
+    --text: #1e293b;
 }
 
 body {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: -apple-system, system-ui, sans-serif;
     background: var(--bg);
+    color: var(--text);
     margin: 0;
-    padding-bottom: 70px; /* Space for nav */
+    padding-bottom: 80px;
 }
 
 .container { padding: 20px; max-width: 500px; margin: auto; }
@@ -16,31 +19,29 @@ body {
 /* Navigation */
 .bottom-nav {
     position: fixed;
-    bottom: 0;
-    width: 100%;
+    bottom: 0; width: 100%;
     background: white;
     display: flex;
     justify-content: space-around;
     padding: 15px 0;
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-    z-index: 100;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    z-index: 1000;
 }
 
 .bottom-nav button {
-    background: none;
-    border: none;
-    font-weight: 600;
-    color: #64748b;
-    cursor: pointer;
+    background: none; border: none;
+    font-weight: bold; color: #64748b;
+    font-size: 0.9rem; cursor: pointer;
 }
 
 /* Camera */
 .camera-box {
     position: relative;
-    border-radius: 12px;
+    border-radius: 16px;
     overflow: hidden;
     background: #000;
     aspect-ratio: 3/4;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 video { width: 100%; height: 100%; object-fit: cover; }
@@ -48,53 +49,44 @@ video { width: 100%; height: 100%; object-fit: cover; }
 .viewfinder {
     position: absolute;
     top: 10%; left: 10%; right: 10%; bottom: 10%;
-    border: 2px dashed #34d399;
+    border: 2px dashed rgba(255,255,255,0.5);
     pointer-events: none;
 }
 
 /* Buttons */
 .main-btn {
-    width: 100%;
-    padding: 15px;
-    margin-top: 20px;
-    background: var(--primary);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: bold;
+    width: 100%; padding: 18px;
+    margin-top: 20px; background: var(--primary);
+    color: white; border: none;
+    border-radius: 12px; font-size: 1.1rem;
+    font-weight: bold; cursor: pointer;
 }
 
-.card {
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
+.danger-btn { background: none; border: 1px solid var(--danger); color: var(--danger); padding: 10px; border-radius: 8px; width: 100%; margin-top: 10px;}
+.export-btn { background: var(--success); color: white; border: none; padding: 12px; border-radius: 8px; width: 100%; margin-top: 20px; font-weight: bold;}
 
-.history-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #e2e8f0;
-    padding: 10px 0;
-}
+/* Results & Cards */
+.total-badge { font-size: 2.5rem; font-weight: 800; color: var(--primary); margin: 15px 0; }
+.card { background: white; padding: 15px; border-radius: 12px; margin-bottom: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.03); }
+
+.history-item { display: flex; justify-content: space-between; align-items: center; }
 
 /* Modal */
 .modal {
-    display: none;
-    position: fixed;
+    display: none; position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.8);
-    align-items: center;
-    justify-content: center;
+    background: rgba(0,0,0,0.7);
+    align-items: center; justify-content: center;
+    z-index: 2000;
 }
 
 .modal-content {
-    background: white;
-    padding: 25px;
-    border-radius: 15px;
-    width: 80%;
-    text-align: center;
+    background: white; padding: 30px;
+    border-radius: 20px; width: 85%;
+    text-align: center; max-width: 400px;
 }
+
+.save-btn { background: var(--primary); color: white; border: none; padding: 12px 20px; border-radius: 8px; margin: 5px; font-weight: bold;}
+.cancel-btn { background: #e2e8f0; border: none; padding: 12px 20px; border-radius: 8px; margin: 5px; }
+
+#status { text-align: center; margin-top: 10px; font-weight: 500; color: #64748b; }
