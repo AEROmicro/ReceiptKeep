@@ -17,20 +17,28 @@
 
     <main class="container">
         <section id="scan-page" class="page">
-            <h1>New Scan</h1>
+            <header>
+                <h1>New Scan</h1>
+                <p>Ensure receipt is flat and well-lit.</p>
+            </header>
+            
             <div class="camera-box">
                 <video id="video" autoplay playsinline></video>
                 <div class="viewfinder"></div>
             </div>
-            <button id="capture-btn" class="main-btn">Capture Receipt</button>
-            <p id="status">Point at a receipt and click capture</p>
+            
+            <button id="capture-btn" class="main-btn">Capture & Read Receipt</button>
+            <p id="status">Ready to scan</p>
             
             <div id="result-modal" class="modal">
                 <div class="modal-content">
                     <h3>Scan Result</h3>
-                    <p>Total Detected: <strong id="detected-total">$0.00</strong></p>
-                    <button onclick="saveCurrentScan()" class="save-btn">Save to History</button>
-                    <button onclick="closeModal()" class="cancel-btn">Discard</button>
+                    <p>Total Detected:</p>
+                    <div class="total-badge" id="detected-total">$0.00</div>
+                    <div class="modal-actions">
+                        <button onclick="saveCurrentScan()" class="save-btn">Save to History</button>
+                        <button onclick="closeModal()" class="cancel-btn">Discard</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -38,27 +46,27 @@
         <section id="history-page" class="page" style="display:none;">
             <h1>My History</h1>
             <div id="history-list"></div>
-            <button onclick="clearAllHistory()" class="danger-btn">Clear All Data</button>
+            <div class="history-controls">
+                <button onclick="exportToCSV()" class="export-btn">Download CSV (Excel)</button>
+                <button onclick="clearAllHistory()" class="danger-btn">Clear All Data</button>
+            </div>
         </section>
 
         <section id="info-page" class="page" style="display:none;">
-            <h1>About ReceiptKeep</h1>
+            <h1>Information</h1>
             <div class="card">
-                <h3>🔒 100% Private</h3>
-                <p>This app uses <strong>Tesseract.js</strong> to process images directly on your device. No images or data are ever sent to a server.</p>
+                <h3>🔒 Private & Local</h3>
+                <p>This app uses <strong>Tesseract.js</strong>. Processing happens entirely on your device. No data is sent to a server.</p>
             </div>
             <div class="card">
-                <h3>💡 Tips for Success</h3>
-                <ul>
-                    <li>Use bright, even lighting.</li>
-                    <li>Keep the receipt flat and steady.</li>
-                    <li>The app looks for the largest currency value as the "Total".</li>
-                </ul>
+                <h3>🛠 How it works</h3>
+                <p>The app applies a high-contrast filter to your photo to make text sharper, then uses a "Highest Price" algorithm to find your total.</p>
             </div>
         </section>
     </main>
 
     <canvas id="canvas" style="display:none;"></canvas>
+
     <script src="script.js"></script>
 </body>
 </html>
