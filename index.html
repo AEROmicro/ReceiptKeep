@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReceiptKeep - Privacy Scanner</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+</head>
+<body>
+
+    <nav class="bottom-nav">
+        <button onclick="showPage('scan-page')">Scan</button>
+        <button onclick="showPage('history-page')">History</button>
+        <button onclick="showPage('info-page')">Info</button>
+    </nav>
+
+    <main class="container">
+        <section id="scan-page" class="page">
+            <h1>New Scan</h1>
+            <div class="camera-box">
+                <video id="video" autoplay playsinline></video>
+                <div class="viewfinder"></div>
+            </div>
+            <button id="capture-btn" class="main-btn">Capture Receipt</button>
+            <p id="status">Point at a receipt and click capture</p>
+            
+            <div id="result-modal" class="modal">
+                <div class="modal-content">
+                    <h3>Scan Result</h3>
+                    <p>Total Detected: <strong id="detected-total">$0.00</strong></p>
+                    <button onclick="saveCurrentScan()" class="save-btn">Save to History</button>
+                    <button onclick="closeModal()" class="cancel-btn">Discard</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="history-page" class="page" style="display:none;">
+            <h1>My History</h1>
+            <div id="history-list"></div>
+            <button onclick="clearAllHistory()" class="danger-btn">Clear All Data</button>
+        </section>
+
+        <section id="info-page" class="page" style="display:none;">
+            <h1>About ReceiptKeep</h1>
+            <div class="card">
+                <h3>🔒 100% Private</h3>
+                <p>This app uses <strong>Tesseract.js</strong> to process images directly on your device. No images or data are ever sent to a server.</p>
+            </div>
+            <div class="card">
+                <h3>💡 Tips for Success</h3>
+                <ul>
+                    <li>Use bright, even lighting.</li>
+                    <li>Keep the receipt flat and steady.</li>
+                    <li>The app looks for the largest currency value as the "Total".</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <canvas id="canvas" style="display:none;"></canvas>
+    <script src="script.js"></script>
+</body>
+</html>
